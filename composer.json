@@ -1,5 +1,5 @@
 {
-    "name": "soap/TutorSchool",
+    "name": "soap/tutor-school",
     "description": "Tutorial School Management built with Laravel Framework.",
     "keywords": ["framework", "laravel", "tutor", "school", "management"],
     "license": "MIT",
