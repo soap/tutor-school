@@ -51,7 +51,7 @@ before_script:
   - sed -i '$a TRAVIS=true' .env
   # create the database and user
   - mysql -u root -e "create database IF NOT EXISTS tutorschool;"
-  - mysql -u root -e "GRANT ALL PRIVILEGES ON tutorschool.* To 'tutor'@'localhost' IDENTIFIED BY 'tutor'; FLUSH PRIVILEGES;"
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON tutorschool.* To 'tutor'@'localhost' IDENTIFIED BY 'tutorsecret'; FLUSH PRIVILEGES;"
   # migrate and seed the database
   - php artisan migrate --no-interaction
   - php artisan db:seed --no-interaction # default seed
@@ -59,7 +59,7 @@ before_script:
   # Start webserver on tutorschool.dev:8000
   - php artisan serve --host=tutorschool.dev --port=8000 & # '&' allows to run in background
   # Start PhantomJS
-  #- phantomjs --webdriver=4444 & # '&' allows to run in background
+  - phantomjs --webdriver=4444 & # '&' allows to run in background
   # Give it some time to start
   - sleep 5
   # Make sure the app is up-to-date
