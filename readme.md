@@ -1,6 +1,6 @@
 # Laravel PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/soap/TutorSchool)
+[![Build Status](https://travis-ci.org/soap/TutorSchool.svg)](https://travis-ci.org/soap/TutorSchool)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/soap/TutorSchool)
 [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/soap/TutorSchool)
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/soap/TutorSchoolk)
