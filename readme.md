@@ -1,4 +1,4 @@
-# Laravel PHP Framework
+# The Tutor School Web Application build on Laravel Framework
 
 [![Build Status](https://travis-ci.org/soap/TutorSchool.svg)](https://travis-ci.org/soap/TutorSchool)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/soap/TutorSchool)
