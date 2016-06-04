@@ -19,4 +19,4 @@ Thank you for considering contributing to the Tutor School.
 
 ## License
 
-The Tutor School framework is open-sourced software licensed under the [GNU GPL v3 license](http://opensource.org/licenses/GNUGPLv3).
+The Tutor School framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
