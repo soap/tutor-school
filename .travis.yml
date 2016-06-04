@@ -55,7 +55,7 @@ before_script:
   # migrate and seed the database
   - php artisan migrate --no-interaction
   - php artisan db:seed --no-interaction # default seed
-  - php artisan db:seed --no-interaction --class=UserTableSeeder # development seed
+  - php artisan db:seed --no-interaction --class=UsersTableSeeder # development seed
   # Start webserver on tutorschool.dev:8000
   - php artisan serve --host=tutorschool.dev --port=8000 & # '&' allows to run in background
   # Start PhantomJS
@@ -72,7 +72,7 @@ script:
 
 after_script:
   - cat .env
-  - mysql -u root -e 'select * from students;' tutorschool
+  #- mysql -u root -e 'select * from students;' tutorschool
 
   - cat storage/logs/laravel-error.log
   - cat storage/logs/laravel-info.log
