@@ -14,3 +14,4 @@ storage/
 
 # Testing
 tests/_output/*
+.idea
