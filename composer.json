@@ -8,6 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "codeception/codeception": "^2.2",
+        "laravelcollective/html": "5.2.*",
         "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {

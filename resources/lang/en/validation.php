@@ -108,6 +108,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'old_password' => 'Current Password',
+        'new_password' => 'New Password',
+        'new_password_confirmation' => 'Confirm New Password'
+    ],
 
 ];

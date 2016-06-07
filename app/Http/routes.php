@@ -20,10 +20,14 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::group(['namespace' => 'Auth'], function() {
+        Route::get('password/change', 'PasswordController@showChangePasswordForm')->name('auth.password.change');
+        Route::post('password/update', 'PasswordController@changePassword')->name('auth.password.update');
+    });
+
     Route::group(['namespace' => 'User'], function() {
         Route::get('dashboard', 'DashboardController@index')->name('user.dashboard');
-        Route::get('password/change', 'PasswordController@change')->name('user.password.change');
-        Route::get('password/update', 'ProfileController@update')->name('user.password.update');
+        Route::get('profile', 'ProfileController@index')->name('user.profile');
         Route::get('profile/edit', 'ProfileController@edit')->name('user.profile.edit');
         Route::patch('profile/update', 'ProfileController@update')->name('user.profile.update');
     });

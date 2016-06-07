@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Services\Access\Traits\ChangePasswords;
 
 class PasswordController extends Controller
 {
@@ -18,7 +20,7 @@ class PasswordController extends Controller
     |
     */
 
-    use ResetsPasswords;
+    use ResetsPasswords, ChangePasswords;
 
     /**
      * Create a new password controller instance.
@@ -27,6 +29,7 @@ class PasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => ['showChangePasswordForm', 'changePassword']]);
+        $this->user = Auth::user();
     }
 }
