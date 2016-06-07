@@ -15,6 +15,9 @@ class ExampleTest extends TestCase
     {
         $this->visit('/')
             ->see('Tutor School')
-            ->click('login');
+            ->click('login')
+            ->see('Password')
+            ->click('Register')
+            ->see('E-mail');
     }
 }
