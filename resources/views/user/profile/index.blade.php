@@ -24,7 +24,7 @@
                                 <table class="table table-striped table-hover table-bordered dashboard-table">
                                     <tr>
                                         <th>{{ trans('labels.user.profile.avatar') }}</th>
-                                        <td><img src="{!! $user->picture !!}" class="user-profile-image" /></td>
+                                        <td><img src="{!! $user->picture !!}" class="user-profile-image img-circle" /></td>
                                     </tr>
                                     <tr>
                                         <th>{{ trans('labels.user.profile.name') }}</th>

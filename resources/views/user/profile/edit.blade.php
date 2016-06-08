@@ -13,17 +13,24 @@
                     {!! Form::model($user, ['route' => 'user.profile.update', 'class' => 'form-horizontal', 'method' => 'PATCH']) !!}
 
                         <div class="form-group">
-                            {!! Form::label('name', trans('validation.attributes.frontend.name'), ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('first_name', trans('validation.attributes.first_name'), ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::input('text', 'name', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.name')]) !!}
+                                {!! Form::input('text', 'first_name', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.first_name')]) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('last_name', trans('validation.attributes.last_name'), ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::input('text', 'last_name', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.last_name')]) !!}
                             </div>
                         </div>
 
                         @if ($user->canChangeEmail())
                             <div class="form-group">
-                                {!! Form::label('email', trans('validation.attributes.frontend.email'), ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('email', trans('validation.attributes.email'), ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-6">
-                                    {!! Form::input('email', 'email', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.email')]) !!}
+                                    {!! Form::input('email', 'email', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.email')]) !!}
                                 </div>
                             </div>
                         @endif

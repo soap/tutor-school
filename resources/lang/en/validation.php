@@ -111,7 +111,9 @@ return [
     'attributes' => [
         'old_password' => 'Current Password',
         'new_password' => 'New Password',
-        'new_password_confirmation' => 'Confirm New Password'
+        'new_password_confirmation' => 'Confirm New Password',
+        'first_name' => 'First Name',
+        'last_name' => 'Last Name'
     ],
 
 ];

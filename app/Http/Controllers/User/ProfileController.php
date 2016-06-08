@@ -36,9 +36,10 @@ class ProfileController extends Controller
      * @param  UpdateProfileRequest $request
      * @return mixed
      */
-    public function update(UserRepositoryContract $user, UpdateProfileRequest $request)
+    public function update(UpdateProfileRequest $request)
     {
-        $user->updateProfile(Auth::user()->id, $request->all());
+        $user = Auth::user();
+        $user->updateProfile($user->id, $request->all());
         return redirect()->route('user.profile')->withFlashSuccess(trans('strings.user.profile_updated'));
     }
 }

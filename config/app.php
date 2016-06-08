@@ -159,6 +159,7 @@ return [
         /*
          * Third party Service Providers
          */
+        Creativeorange\Gravatar\GravatarServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
 
@@ -211,10 +212,11 @@ return [
         /*
          * Third party Aliases
          */
-        'Form'      => Collective\Html\FormFacade::class,
-        'Html'      => Collective\Html\HtmlFacade::class,
-        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Gravatar'  => Creativeorange\Gravatar\Facades\Gravatar::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
     ],
 
 ];
