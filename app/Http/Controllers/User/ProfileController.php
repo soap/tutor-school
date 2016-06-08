@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateProfileRequest;
-use App\Repositories\Access\User\UserRepositoryContract;
 
 /**
  * Class ProfileController
