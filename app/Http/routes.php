@@ -20,6 +20,8 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('students', 'StudentController@index')->name('students');
+
     Route::group(['namespace' => 'Auth'], function() {
         Route::get('password/change', 'PasswordController@showChangePasswordForm')->name('auth.password.change');
         Route::post('password/update', 'PasswordController@changePassword')->name('auth.password.update');
@@ -31,4 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('profile/edit', 'ProfileController@edit')->name('user.profile.edit');
         Route::patch('profile/update', 'ProfileController@update')->name('user.profile.update');
     });
+});
+
+
+Route::group(['prefix'=>'api/v1', 'middleware'=>'auth:api'], function() {
+    Route::get('/students', 'StudentController@getDatatable')->name('api.students');
 });

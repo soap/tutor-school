@@ -70,6 +70,10 @@ return [
             'model' => App\Models\Access\User\User::class,
         ],
 
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
