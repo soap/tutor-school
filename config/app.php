@@ -161,6 +161,7 @@ return [
          */
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
 
     ],
