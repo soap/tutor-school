@@ -11,7 +11,13 @@
         "laravelcollective/html": "5.2.*",
         "zizaco/entrust": "5.2.x-dev",
         "creativeorange/gravatar": "~1.0",
-        "yajra/laravel-datatables-oracle": "~6.0"
+        "yajra/laravel-datatables-oracle": "~6.0",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "hieu-le/active": "~2.0",
+        "arcanedev/log-viewer": "~3.0",
+        "spatie/laravel-backup": "^3.0",
+        "acacha/admin-lte-template-laravel": "2.*",
+        "anahkiasen/former": "^4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

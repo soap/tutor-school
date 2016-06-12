@@ -45,12 +45,12 @@ class EntityTransformer extends TransformerAbstract
     protected function getDefaults($entity)
     {
         $data = [
-            'is_owner' => (bool) Auth::user()->owns($entity),
+            //'is_owner' => (bool) Auth::user()->owns($entity),
         ];
 
-        if ($entity->relationLoaded('user')) {
-            $data['user_id'] = (int) $entity->user->public_id + 1;
-        }
+        //if ($entity->relationLoaded('user')) {
+        //    $data['user_id'] = (int) $entity->user->public_id + 1;
+        //}
 
         return $data;
     }

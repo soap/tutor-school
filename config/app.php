@@ -154,6 +154,7 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
         /*
@@ -213,7 +214,7 @@ return [
         /*
          * Third party Aliases
          */
-
+        'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Gravatar'  => Creativeorange\Gravatar\Facades\Gravatar::class,
