@@ -168,7 +168,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Soap\ThProvinces\ProvincesServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
-
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
     ],
 
     /*
@@ -245,6 +245,7 @@ return [
         'Gravatar'          => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Html'              => Collective\Html\HtmlFacade::class,
         'ThProvinces'       => Soap\ThProvinces\Provinces\Facades\Provinces::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
 ];

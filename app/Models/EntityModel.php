@@ -103,7 +103,7 @@ class EntityModel extends Eloquent
         }
     }
 
-    // converts "App\Models\Client" to "client_id"
+    // converts "App\Models\Student" to "student_id"
     public function getKeyField()
     {
         $class = get_class($this);

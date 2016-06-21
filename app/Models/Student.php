@@ -29,7 +29,8 @@ class Student extends EntityModel
         'province_id',
         'postal_code',
         'private_note',
-        'status'
+        'status',
+        'public_id'
     ];
 
     protected $dates = ['deleted_at'];

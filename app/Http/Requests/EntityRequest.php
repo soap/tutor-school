@@ -29,12 +29,19 @@ class EntityRequest extends Request
                 $publicId= $this->$field;
             }
         }
+
         if ( ! $publicId) {
             $publicId = Input::get('public_id') ?: Input::get('id');
         }
+
+        if ( ! $publicId) {
+            $publicId = $this->route('public_id') ?: $this->route('id');
+        }
+
         if ( ! $publicId) {
             return null;
         }
+
         $class = Utils::getEntityClass($this->entityType);
 
         if (method_exists($class, 'withTrashed')) {
@@ -53,7 +60,7 @@ class EntityRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

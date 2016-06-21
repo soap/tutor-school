@@ -52,6 +52,17 @@ class StudentController extends Controller
         return View::make('list', $data);
     }
 
+    public function show(StudentRequest $request, $public_id)
+    {
+        $student = $request->entity();
+
+        $data = [
+            'title' => $student->first_name.' '.$student->last_name,
+            'student' => $student
+        ];
+        return View::make('students.show', $data);
+    }
+
     public function create()
     {
         $data = [
