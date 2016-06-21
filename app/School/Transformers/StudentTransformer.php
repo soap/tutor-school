@@ -4,6 +4,7 @@ namespace App\School\Transformers;
 
 use App\Models\Student;
 use League\Fractal;
+use Carbon\Carbon;
 
 class StudentTransformer extends EntityTransformer
 {
@@ -17,7 +18,7 @@ class StudentTransformer extends EntityTransformer
         return array_merge($this->getDefaults($student), [
             'id'            => (int) $student['id'],
             'first_name'    => $student['first_name'],
-            'last_name'     => $student['las_name'],
+            'last_name'     => $student['last_name'],
             'created_at'    => $this->dateFormatter($student['created_at']),
             'updated_at'    => $this->dateFormatter($student['updated_at']),
         ]);

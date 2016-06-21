@@ -160,10 +160,14 @@ return [
         /*
          * Third party Service Providers
          */
+        Bootstrapper\BootstrapperL5ServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Former\FormerServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Soap\ThProvinces\ProvincesServiceProvider::class,
+        HieuLe\Active\ActiveServiceProvider::class,
 
     ],
 
@@ -194,6 +198,7 @@ return [
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+        'Input' => 'Illuminate\Support\Facades\Input',
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -214,11 +219,32 @@ return [
         /*
          * Third party Aliases
          */
-        'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
-        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-        'Form'      => Collective\Html\FormFacade::class,
-        'Gravatar'  => Creativeorange\Gravatar\Facades\Gravatar::class,
-        'Html'      => Collective\Html\HtmlFacade::class,
+        'Active'            => HieuLe\Active\Facades\Active::class,
+        'AdminLTE'          => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+        'Entrust'           => Zizaco\Entrust\EntrustFacade::class,
+        'Button'            => Bootstrapper\Facades\Button::class,
+        'ButtonGroup'       => Bootstrapper\Facades\ButtonGroup::class,
+        'ButtonToolbar'     => Bootstrapper\Facades\ButtonToolbar::class,
+        'Carousel'          => Bootstrapper\Facades\Carousel::class,
+        'DropdownButton'    => Bootstrapper\Facades\DropdownButton::class,
+        'Helpers'           => Bootstrapper\Facades\Helpers::class,
+        'Icon'              => Bootstrapper\Facades\Icon::class,
+        'Label'             => Bootstrapper\Facades\Label::class,
+        'MediaObject'       => Bootstrapper\Facades\MediaObject::class,
+        'Navbar'            => Bootstrapper\Facades\Navbar::class,
+        'Navigation'        => Bootstrapper\Facades\Navigation::class,
+        'Paginator'         => Bootstrapper\Facades\Paginator::class,
+        'Progress'          => Bootstrapper\Facades\Progress::class,
+        'Tabbable'          => Bootstrapper\Facades\Tabbable::class,
+        'Table'             => Bootstrapper\Facades\Table::class,
+        'Thumbnail'         => Bootstrapper\Facades\Thumbnail::class,
+        'Typeahead'         => Bootstrapper\Facades\Typeahead::class,
+        'Typography'        => Bootstrapper\Facades\Typography::class,
+        'Form'              => Collective\Html\FormFacade::class,
+        'Former'            => Former\Facades\Former::class,
+        'Gravatar'          => Creativeorange\Gravatar\Facades\Gravatar::class,
+        'Html'              => Collective\Html\HtmlFacade::class,
+        'ThProvinces'       => Soap\ThProvinces\Provinces\Facades\Provinces::class,
     ],
 
 ];

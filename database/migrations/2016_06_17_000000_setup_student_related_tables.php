@@ -12,8 +12,9 @@ class SetupStudentRelatedTables extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('name_titles');
         Schema::dropIfExists('students');
+        Schema::dropIfExists('name_titles');
+        Schema::dropIfExists('education_levels');
 
         Schema::create('name_titles', function (Blueprint $table) {
             $table->increments('id');
@@ -53,13 +54,22 @@ class SetupStudentRelatedTables extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('name_title_id');
-            $table->string('first_name', 100);
-            $table->string('last_name', 100);
-            $table->text('billable_address')->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('first_name', 200);
+            $table->string('last_name', 200);
+            $table->string('short_name', 100);
             $table->string('citizen_id')->nullable();
-            $table->integer('education_level_id')->unsigned();
             $table->date('birth_date')->default('0000-00-00');
+            $table->string('avatar')->nullable();
+            $table->string('address1')->nullable();
+            $table->string('address2')->nullable();
+            $table->string('city')->nullable();
+            $table->integer('province_id');
+            $table->string('postal_code', 10);
+
+            $table->integer('education_level_id')->unsigned();
+            $table->text('billing_address')->nullable();
+
+            $table->text('private_note')->nullable();
             $table->integer('status')->unsigned()->default(1);
 
             $table->timestamps();
@@ -67,6 +77,7 @@ class SetupStudentRelatedTables extends Migration
 
             $table->foreign('name_title_id')->references('id')->on('name_titles');
             $table->foreign('education_level_id')->references('id')->on('education_levels');
+            $table->foreign('province_id')->references('id')->on('provinces');
         });
     }
 

@@ -4,50 +4,122 @@ namespace App\Http\Controllers;
 
 use View;
 use Auth;
+use DB;
+use Validator;
+use Input;
+use Cache;
 use App\Models\Student;
-use App\Http\Requests;
+use App\Models\Province;
+use App\Models\EducationLevel;
+use App\Http\Requests\StudentRequest;
+use App\Http\Requests\CreateStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
+use App\School\Repositories\StudentRepository;
+use App\Services\StudentService;
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
+use Yajra\Datatables\Html\Builder;
+
 
 class StudentController extends Controller
 {
-    public function index()
+    protected $studentRepo;
+    protected $studentService;
+    protected $entityType = ENTITY_STUDENT;
+
+    public function __construct(StudentService $studentService, StudentRepository $studentRepo)
     {
+        $this->studentRepo = $studentRepo;
+        $this->studentService = $studentService;
+    }
+
+    public function index(Builder $htmlBuilder)
+    {
+        $table = $htmlBuilder
+            ->addColumn(['data' => 'id', 'name'=> 'students.id', 'title' => 'Id', 'searchable' => false ])
+            ->addColumn(['data' => 'name', 'name' => 'students.first_name', 'title' => 'Full Name', 'searchable' => false])
+            ->addColumn(['data' => 'short_name', 'name' => 'students.short_name', 'title' =>'Short Name', 'searchable' => false])
+            ->addColumn(['data' => 'education_level', 'name' => 'education_level', 'title' =>'Level', 'searchable' => false])
+            ->addColumn(['data' => 'created_at', 'name' => 'created_at', 'title' => 'Created At', 'searchable' => false])
+            ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' =>'Updated At', 'searchable' => false])
+            //->addColumn(['data' => 'dropdown', 'name' => 'dropdown', 'title' => 'Action', 'orderable' => false, 'searchable' => false])
+            ->ajax(['url'=>  route('api.students')])
+        ->addAction();
         $data = [
-            'title' => 'Students'
+            'title' => trans('strings.students.students'),
+            'entity'=> $this->entityType,
+            'table' => $table
         ];
-        return View::make('students.index', $data);
+        return View::make('list', $data);
     }
 
     public function create()
     {
         $data = [
-            'title' => 'New Student'
+            'title' => "strings.students.add_new",
+            'url'=> route('students.save'),
+            'method' => 'POST'
         ];
+
+        $data = array_merge($data, self::getViewModel());
+
         return View::make('students.edit', $data);
     }
 
+    public function edit(StudentRequest $request)
+    {
+        $student = $request->entity();
+
+        $data = [
+            'client' => $student,
+            'method' => 'PUT',
+            'url' => 'students/'.$student->public_id,
+            'title' => trans('texts.edit_client'),
+        ];
+
+        $data = array_merge($data, self::getViewModel());
+
+        return View::make('students.edit', $data);
+    }
+    /**
+     * Save new student record
+     * @param CreateStudentRequest $request
+     * @return boolean
+     */
+    public function store(CreateStudentRequest $request)
+    {
+        $student = $this->studentRepo->save($request->input());
+
+        return redirect()->to($student->getRoute());
+    }
+
+    /**
+     * Save existing student record
+     * @param UpdateStudentRequest $request
+     */
+    public function update(UpdateStudentRequest $request)
+    {
+
+    }
+
+    /**
+     * Get list of students to be use in Datatable
+     * @param Request $request
+     * @return mixed
+     */
     public function getDataTable(Request $request)
     {
-        $students = Student::select(['id', 'first_name', 'last_name', 'created_at', 'updated_at']);
+        $search = $request->get('search')['value'];
 
-        return Datatables::of($students)
-            ->setTransformer('App\School\Transformers\StudentTransformer')
-            ->addColumn('action', function ($student) {
-                return '<a href="#edit-'.$student->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
-            })
-            ->editColumn('id', '{{$id}}')
-            //->removeColumn('password')
-            ->setRowId('id')
-            ->setRowClass(function ($student) {
-                return $student->id % 2 == 0 ? 'alert-success' : 'alert-warning';
-            })
-            ->setRowData([
-                'id' => 'test',
-            ])
-            ->setRowAttr([
-                'color' => 'red',
-            ])
-            ->make(true);
+        return $this->studentService->getDatatable($search);
+    }
+
+    private static function getViewModel()
+    {
+        return [
+            'data' => Input::old('data'),
+            'name_titles' => DB::table('name_titles')->select('id', 'name')->get(),
+            'provinces' => Province::get(),
+            'education_levels' => EducationLevel::get()
+        ];
     }
 }

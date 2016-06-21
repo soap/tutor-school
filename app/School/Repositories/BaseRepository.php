@@ -1,4 +1,7 @@
 <?php
+
+namespace App\School\Repositories;
+
 class BaseRepository
 {
     public function getClassName()

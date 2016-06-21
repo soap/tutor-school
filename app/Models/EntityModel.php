@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Auth;
 use Eloquent;
-use Utils;
+use App\School\Libraries\Utils;
 
 class EntityModel extends Eloquent
 {
@@ -16,21 +16,11 @@ class EntityModel extends Eloquent
         $className = get_called_class();
         $entity = new $className();
 
-        if ($context) {
-            $entity->user_id = $context instanceof User ? $context->id : $context->user_id;
-            $entity->account_id = $context->account_id;
-        } elseif (Auth::check()) {
-            $entity->user_id = Auth::user()->id;
-            $entity->account_id = Auth::user()->account_id;
-        } else {
-            Utils::fatalError();
-        }
-
         if(method_exists($className, 'withTrashed')){
             $lastEntity = $className::withTrashed()
-                ->scope(false, $entity->account_id);
+                ->scope(false);
         } else {
-            $lastEntity = $className::scope(false, $entity->account_id);
+            $lastEntity = $className::scope(false);
         }
 
         $lastEntity = $lastEntity->orderBy('public_id', 'DESC')
@@ -57,14 +47,8 @@ class EntityModel extends Eloquent
         return '[' . $this->getEntityType().':'.$this->public_id.':'.$this->getDisplayName() . ']';
     }
 
-    public function scopeScope($query, $publicId = false, $accountId = false)
+    public function scopeScope($query, $publicId = false)
     {
-        if (!$accountId) {
-            $accountId = Auth::user()->account_id;
-        }
-
-        $query->where($this->getTable() .'.account_id', '=', $accountId);
-
         if ($publicId) {
             if (is_array($publicId)) {
                 $query->whereIn('public_id', $publicId);

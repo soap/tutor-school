@@ -9,15 +9,18 @@
         "laravel/framework": "5.2.*",
         "codeception/codeception": "^2.2",
         "laravelcollective/html": "5.2.*",
+        "laracasts/presenter": "0.2.*",
         "zizaco/entrust": "5.2.x-dev",
         "creativeorange/gravatar": "~1.0",
         "yajra/laravel-datatables-oracle": "~6.0",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
-        "hieu-le/active": "~2.0",
+        "hieu-le/active": "^3.0",
         "arcanedev/log-viewer": "~3.0",
         "spatie/laravel-backup": "^3.0",
         "acacha/admin-lte-template-laravel": "2.*",
-        "anahkiasen/former": "^4.0"
+        "patricktalmadge/bootstrapper": "5.5.x",
+        "anahkiasen/former": "^4.0",
+        "soap/thailand-provinces": "^0.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
