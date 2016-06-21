@@ -6,8 +6,8 @@ $I->see('Home');
 
 $I->wantTo('Ensure that login page shown');
 $I->amOnPage('/login');
-$I->see('Password');
+$I->see('Sign in to start your session');
 
 $I->wantTo('Ensure that register page shown');
 $I->amOnPage('/register');
-$I->see('First Name');
+$I->see('Register a new membership');
