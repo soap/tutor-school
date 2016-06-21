@@ -22,32 +22,29 @@ class EntityRequest extends Request
         }
 
         // The entity id can appear as invoices, invoice_id, public_id or id
-        $publicId = false;
+        $pId = false;
         foreach (['_id', 's'] as $suffix) {
             $field = $this->entityType . $suffix;
             if ($this->$field) {
-                $publicId= $this->$field;
+                $pId= $this->$field;
             }
         }
 
-        if ( ! $publicId) {
-            $publicId = Input::get('public_id') ?: Input::get('id');
+        if ( ! $pId) {
+            $pId = Input::get('id') ?: $this->route('id');
         }
 
-        if ( ! $publicId) {
-            $publicId = $this->route('public_id') ?: $this->route('id');
-        }
 
-        if ( ! $publicId) {
+        if ( ! $pId) {
             return null;
         }
 
         $class = Utils::getEntityClass($this->entityType);
 
         if (method_exists($class, 'withTrashed')) {
-            $this->entity = $class::scope($publicId)->withTrashed()->firstOrFail();
+            $this->entity = $class::scope($pId)->withTrashed()->firstOrFail();
         } else {
-            $this->entity = $class::scope($publicId)->firstOrFail();
+            $this->entity = $class::scope($pId)->firstOrFail();
         }
 
         return $this->entity;

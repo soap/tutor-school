@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
+    protected $fillable = [
+        'name',
+        'subject_id',
+        'subject_type',
+        'user_id'
+    ];
     /**
      * Get the user responsible for the given activity.
      *

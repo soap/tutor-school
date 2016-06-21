@@ -23,13 +23,13 @@ class StudentDatatable extends EntityDatatable
             [
                 'name',
                 function ($model) {
-                    return link_to("students/{$model->public_id}", $model->name_title.' '.$model->first_name.' '.$model->last_name)->toHtml();
+                    return link_to("students/{$model->id}", $model->name_title.' '.$model->first_name.' '.$model->last_name)->toHtml();
                 }
             ],
             [
                 'short_name',
                 function ($model) {
-                    return link_to("students/{$model->public_id}", $model->short_name ?: '')->toHtml();
+                    return link_to("students/{$model->id}", $model->short_name ?: '')->toHtml();
                 }
             ],
             [
@@ -61,7 +61,7 @@ class StudentDatatable extends EntityDatatable
             [
                 trans('strings.students.edit'),
                 function ($model) {
-                    return URL::to("students/{$model->public_id}/edit");
+                    return URL::to("students/{$model->id}/edit");
                 },
                 function ($model) {
                     return true;//Auth::user()->can('editByOwner', [ENTITY_CLIENT, $model->user_id]);
@@ -77,7 +77,7 @@ class StudentDatatable extends EntityDatatable
             [
                 trans('strings.invoices.add_new'),
                 function ($model) {
-                    return URL::to("invoices/create/{$model->public_id}");
+                    return URL::to("invoices/create/{$model->id}");
                 },
                 function ($model) {
                     return true; //Auth::user()->can('create', ENTITY_INVOICE);
@@ -93,7 +93,7 @@ class StudentDatatable extends EntityDatatable
             [
                 trans('strings.payments.enter_payment'),
                 function ($model) {
-                    return URL::to("payments/create/{$model->public_id}");
+                    return URL::to("payments/create/{$model->id}");
                 },
                 function ($model) {
                     return true; //Auth::user()->can('create', ENTITY_PAYMENT);

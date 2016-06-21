@@ -65,7 +65,7 @@ class StudentController extends Controller
      * @param $public_id
      * @return mixed
      */
-    public function show(StudentRequest $request, $public_id)
+    public function show(StudentRequest $request)
     {
         $student = $request->entity();
 
@@ -82,8 +82,9 @@ class StudentController extends Controller
     public function create()
     {
         $data = [
+            'student' => false,
             'title' => "strings.students.add_new",
-            'url'=> route('students.save'),
+            'url'=> route('students.store'),
             'method' => 'POST'
         ];
 
@@ -103,7 +104,7 @@ class StudentController extends Controller
         $data = [
             'student' => $student,
             'method' => 'PUT',
-            'url' => route('students.update', $student->public_id),
+            'url' => route('students.update', $student->id),
             'title' => trans('strings.students.edit'),
         ];
 

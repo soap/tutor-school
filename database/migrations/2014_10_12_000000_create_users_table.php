@@ -25,9 +25,7 @@ class CreateUsersTable extends Migration
 			$table->string('confirmation_code')->nullable();
             $table->boolean('registered')->default(false);
             $table->boolean('confirmed')->default(false);
-			
-			$table->unsignedInteger('public_id')->nullable();
-            $table->unique( array('id','public_id') );
+
         });
     }
 

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Models\Actity\Traits;
+namespace App\Models\Activity\Traits;
 
+use Auth;
 use ReflectionClass;
+use App\Models\Activity\Activity;
 
 trait RecordsActivity
 {
@@ -32,7 +34,7 @@ trait RecordsActivity
             'subject_id' => $this->id,
             'subject_type' => get_class($this),
             'name' => $this->getActivityName($this, $event),
-            'user_id' => $this->user_id
+            'user_id' => Auth::user()->id
         ]);
     }
 

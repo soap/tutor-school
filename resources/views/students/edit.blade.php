@@ -13,7 +13,7 @@
         !!}
         @if ($student)
             {!! Former::populate($student) !!}
-            {!! Former::hidden('public_id') !!}
+            {!! Former::hidden('id') !!}
         @endif
         <div class="row">
             <div class="col-md-6">

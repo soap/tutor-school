@@ -3,6 +3,7 @@
 namespace App\School\Repositories;
 
 use DB;
+use Auth;
 use DataTables;
 use App\School\Repositories\BaseRepository;
 use App\Models\Student;
@@ -31,7 +32,6 @@ class StudentRepository extends BaseRepository
             ->join('education_levels', 'education_levels.id', '=', 'students.education_level_id')
             ->select(
                 'students.id',
-                'students.public_id',
                 'first_name',
                 'last_name',
                 'students.short_name',
@@ -59,15 +59,16 @@ class StudentRepository extends BaseRepository
 
     public function save($data, $student = null)
     {
-        $publicId = isset($data['public_id']) ? $data['public_id'] : false;
+        $Id = isset($data['id']) ? $data['id'] : false;
 
         if ($student) {
-            // do nothing
-        } elseif (!$publicId || $publicId == '-1') {
-            $student = Student::createNew();
+            if ( !isset($data['updated_by'])) $data['updated_by'] = Auth::user()->id;
+        } elseif (!$Id || $Id == '-1') {
+            $student = new Student();
+            if ( !isset($data['created_by'])) $data['created_by'] = Auth::user()->id;
         } else {
-            $student = Student::scope($publicId)->firstOrFail();
-            //\Log::warning('Entity not set in client repo save');
+            $student = Student::scope($Id)->firstOrFail();
+            if ( !isset($data['updated_by'])) $data['updated_by'] = Auth::user()->id;
         }
 
         $student->fill($data);

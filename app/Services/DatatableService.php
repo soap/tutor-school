@@ -92,13 +92,13 @@ class DatatableService
                 }
 
                 if (($datatable->entityType != ENTITY_USER || $model->public_id) && $can_edit) {
-                    $dropdown_contents .= "<li><a href=\"javascript:archiveEntity({$model->public_id})\">"
+                    $dropdown_contents .= "<li><a href=\"javascript:archiveEntity({$model->id})\">"
                         . trans("strings.archive_{$datatable->entityType}") . "</a></li>";
                 }
             }
 
             if (property_exists($model, 'is_deleted') && !$model->is_deleted && $can_edit) {
-                $dropdown_contents .= "<li><a href=\"javascript:deleteEntity({$model->public_id})\">"
+                $dropdown_contents .= "<li><a href=\"javascript:deleteEntity({$model->id})\">"
                     . trans("strings.delete_{$datatable->entityType}") . "</a></li>";
             }
 

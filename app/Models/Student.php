@@ -5,11 +5,13 @@ namespace App\Models;
 use Laracasts\Presenter\PresentableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\EntityModel;
+use App\Models\Activity\Traits\RecordsActivity;
 
 class Student extends EntityModel
 {
     use SoftDeletes;
     use PresentableTrait;
+    use RecordsActivity;
 
     protected $presenter = 'App\School\Presenters\StudentPresenter';
 
@@ -30,7 +32,8 @@ class Student extends EntityModel
         'postal_code',
         'private_note',
         'status',
-        'public_id'
+        'created_by',
+        'updated_by'
     ];
 
     protected $dates = ['deleted_at'];
@@ -47,12 +50,22 @@ class Student extends EntityModel
 
     public function education_level()
     {
-        return $this->hasOne('App\Models\EducationLevel');
+        return $this->belongsTo('App\Models\EducationLevel');
     }
 
     public function province()
     {
-        return $this->hasOne('App\Models\Province');
+        return $this->belongsTo('App\Models\Province');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo('App\Models\Access\User\User', 'created_by');
+    }
+
+    public function modifier()
+    {
+        return $this->belongsTo('App\Models\Access\User\User', 'updated_by');
     }
 
     public function getRoute()

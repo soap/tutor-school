@@ -74,7 +74,7 @@ class BaseRepository
             event(new $className($entity));
         }
     }
-
+    /*
     public function findByPublicIds($ids)
     {
         return $this->getInstance()->scope($ids)->get();
@@ -84,4 +84,5 @@ class BaseRepository
     {
         return $this->getInstance()->scope($ids)->withTrashed()->get();
     }
+    */
 }

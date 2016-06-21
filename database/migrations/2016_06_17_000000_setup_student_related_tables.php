@@ -74,10 +74,16 @@ class SetupStudentRelatedTables extends Migration
 
             $table->timestamps();
             $table->softDeletes();
+            $table->unsignedInteger('created_by');
+            $table->unsignedInteger('updated_by')->nullable();
+
 
             $table->foreign('name_title_id')->references('id')->on('name_titles');
             $table->foreign('education_level_id')->references('id')->on('education_levels');
             $table->foreign('province_id')->references('id')->on('provinces');
+
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

@@ -11,49 +11,19 @@ class EntityModel extends Eloquent
     public $timestamps = true;
     protected $hidden = ['id'];
 
-    public static function createNew($context = null)
-    {
-        $className = get_called_class();
-        $entity = new $className();
-
-        if(method_exists($className, 'withTrashed')){
-            $lastEntity = $className::withTrashed()
-                ->scope(false);
-        } else {
-            $lastEntity = $className::scope(false);
-        }
-
-        $lastEntity = $lastEntity->orderBy('public_id', 'DESC')
-            ->first();
-
-        if ($lastEntity) {
-            $entity->public_id = $lastEntity->public_id + 1;
-        } else {
-            $entity->public_id = 1;
-        }
-
-        return $entity;
-    }
-
-    public static function getPrivateId($publicId)
-    {
-        $className = get_called_class();
-
-        return $className::scope($publicId)->withTrashed()->value('id');
-    }
 
     public function getActivityKey()
     {
-        return '[' . $this->getEntityType().':'.$this->public_id.':'.$this->getDisplayName() . ']';
+        return '[' . $this->getEntityType().':'.$this->id.':'.$this->getDisplayName() . ']';
     }
 
-    public function scopeScope($query, $publicId = false)
+    public function scopeScope($query, $Id = false)
     {
-        if ($publicId) {
-            if (is_array($publicId)) {
-                $query->whereIn('public_id', $publicId);
+        if ($Id) {
+            if (is_array($Id)) {
+                $query->whereIn('id', $Id);
             } else {
-                $query->wherePublicId($publicId);
+                $query->whereId($Id);
             }
         }
 
@@ -63,7 +33,7 @@ class EntityModel extends Eloquent
     public function scopeViewable($query)
     {
         if (Auth::check() && ! Auth::user()->hasPermission('view_all')) {
-            $query->where($this->getEntityType(). 's.user_id', '=', Auth::user()->id);
+            $query->where($this->getEntityType(). 's.created_by', '=', Auth::user()->id);
         }
 
         return $query;
@@ -76,7 +46,7 @@ class EntityModel extends Eloquent
 
     public function getName()
     {
-        return $this->public_id;
+        return $this->id;
     }
 
     public function getDisplayName()
