@@ -11,6 +11,10 @@
         {!!  Former::open($url)
             ->method($method)
         !!}
+        @if ($student)
+            {!! Former::populate($student) !!}
+            {!! Former::hidden('public_id') !!}
+        @endif
         <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-default">

@@ -21,12 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('students', 'StudentController@index')->name('students.index');
-    Route::get('students/{public_id}', 'StudentController@show')->name('students.show');
-    Route::get('students/create', 'StudentController@create')->name('students.create');
-    Route::post('students/save/', 'StudentController@store')->name('students.save');
-    Route::get('students/{public_id}/edit', 'StudentController@edit')->name('students.edit');
-    Route::post('students/{public_id}/update', 'StudentController@update')->name('students.update');
+    Route::resource('students', 'StudentController');
     Route::get('api/students', 'StudentController@getDataTable')->name('api.students');
 
     Route::group(['namespace' => 'Auth'], function() {

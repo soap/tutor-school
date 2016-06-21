@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use App\Http\Requests\EntityRequest;
 
-class UpdateStudentRequest extends Request
+class UpdateStudentRequest extends EntityRequest
 {
+    protected $entityType = ENTITY_STUDENT;
+
     /**
      * Determine if the user is authorized to make this request.
      *

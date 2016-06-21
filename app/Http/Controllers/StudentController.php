@@ -26,12 +26,21 @@ class StudentController extends Controller
     protected $studentService;
     protected $entityType = ENTITY_STUDENT;
 
+    /**
+     * StudentController constructor.
+     * @param StudentService $studentService
+     * @param StudentRepository $studentRepo
+     */
     public function __construct(StudentService $studentService, StudentRepository $studentRepo)
     {
         $this->studentRepo = $studentRepo;
         $this->studentService = $studentService;
     }
 
+    /**
+     * @param Builder $htmlBuilder
+     * @return mixed
+     */
     public function index(Builder $htmlBuilder)
     {
         $table = $htmlBuilder
@@ -41,7 +50,6 @@ class StudentController extends Controller
             ->addColumn(['data' => 'education_level', 'name' => 'education_level', 'title' =>'Level', 'searchable' => false])
             ->addColumn(['data' => 'created_at', 'name' => 'created_at', 'title' => 'Created At', 'searchable' => false])
             ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' =>'Updated At', 'searchable' => false])
-            //->addColumn(['data' => 'dropdown', 'name' => 'dropdown', 'title' => 'Action', 'orderable' => false, 'searchable' => false])
             ->ajax(['url'=>  route('api.students')])
         ->addAction();
         $data = [
@@ -52,6 +60,11 @@ class StudentController extends Controller
         return View::make('list', $data);
     }
 
+    /**
+     * @param StudentRequest $request
+     * @param $public_id
+     * @return mixed
+     */
     public function show(StudentRequest $request, $public_id)
     {
         $student = $request->entity();
@@ -63,6 +76,9 @@ class StudentController extends Controller
         return View::make('students.show', $data);
     }
 
+    /**
+     * @return mixed
+     */
     public function create()
     {
         $data = [
@@ -76,25 +92,30 @@ class StudentController extends Controller
         return View::make('students.edit', $data);
     }
 
+    /**
+     * @param StudentRequest $request
+     * @return mixed
+     */
     public function edit(StudentRequest $request)
     {
         $student = $request->entity();
 
         $data = [
-            'client' => $student,
+            'student' => $student,
             'method' => 'PUT',
-            'url' => 'students/'.$student->public_id,
-            'title' => trans('texts.edit_client'),
+            'url' => route('students.update', $student->public_id),
+            'title' => trans('strings.students.edit'),
         ];
 
         $data = array_merge($data, self::getViewModel());
 
         return View::make('students.edit', $data);
     }
+
     /**
      * Save new student record
      * @param CreateStudentRequest $request
-     * @return boolean
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateStudentRequest $request)
     {
@@ -106,10 +127,15 @@ class StudentController extends Controller
     /**
      * Save existing student record
      * @param UpdateStudentRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateStudentRequest $request)
     {
+        $student = $this->studentRepo->save($request->input(), $request->entity());
 
+        $request->session()->flash('message', trans('strings.updated_client'));
+
+        return redirect()->to($student->getRoute());
     }
 
     /**
