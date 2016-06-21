@@ -6,7 +6,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/soap/tutor-school/v/unstable.svg)](https://packagist.org/packages/soap/tutor-schoolk)
 [![License](https://poser.pugx.org/soap/tutor-school/license.svg)](https://packagist.org/packages/soap/tutor-school)
 
-tutor-school is a web application used to manage tutor school or tutorial school. It is based on popular Laravel PHP framework.
+The Tutor School is a web application used to manage tutor school or tutorial school. It is based on popular Laravel PHP framework.
 
 ## Official Documentation
 
@@ -19,4 +19,4 @@ Thank you for considering contributing to the Tutor School.
 
 ## License
 
-The Tutor School framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+The Tutor School is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
