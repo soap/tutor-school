@@ -70,7 +70,7 @@ class StudentController extends Controller
         $student = $request->entity();
 
         $data = [
-            'title' => $student->first_name.' '.$student->last_name,
+            'title' => trans('strings.students.view'),
             'student' => $student
         ];
         return View::make('students.show', $data);

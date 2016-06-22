@@ -15,13 +15,12 @@
             {!! Former::populate($student) !!}
             {!! Former::hidden('id') !!}
         @endif
-        <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>{{ trans("strings.students.contact") }}</h4>
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h4 class="box-title">{{ trans("strings.students.contact") }}</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="box-body">
                         {!! Former::select('name_title_id')->id('name_title_id')->label('Title')
                             ->fromQuery($name_titles,'name', 'id')
                         !!}
@@ -31,11 +30,11 @@
                         {!! Former::text('citizen_id') !!}
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="box box-info">
+                    <div class="box-header with-border">
                         <h4>{{ trans("strings.students.billing_info") }}</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="box-body">
                         {!! Former::textarea('billing_address')->label('Billing Address')
                             ->rows(4)
                          !!}
@@ -43,12 +42,13 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="box box-info">
+                    <div class="box-header with-border">
                         <h4>{{ trans("strings.students.address") }}</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="box-body">
                         {!! Former::text('address1') !!}
                         {!! Former::text('address2') !!}
                         {!! Former::text('city') !!}
@@ -58,11 +58,11 @@
                         {!! Former::text('postal_code') !!}
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="box box-info">
+                    <div class="box-header with-border">
                         <h4>{{ trans("strings.students.additional_info") }}</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="box-body">
                         {!! Former::select('education_level_id')->fromQuery($education_levels, 'name', 'id')
                             ->id('education_level_id')->class('form-control')->style('width: 75%')
                         !!}
@@ -70,9 +70,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+
         <div class="buttons pull-right">
-            {!! Button::success(trans('buttons.general.save'))->submit()->large()->appendIcon(Icon::create('floppy-disk')) !!}
+            {!! Button::primary(trans('buttons.general.save'))->submit()->large()->appendIcon(Icon::create('floppy-disk')) !!}
             {!! Button::normal(trans('buttons.general.cancel'))->large()->asLinkTo(url('/students'))->appendIcon(Icon::create('remove-circle')) !!}
         </div>
 
