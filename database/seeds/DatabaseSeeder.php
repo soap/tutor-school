@@ -13,6 +13,11 @@ class DatabaseSeeder extends Seeder
     {
 		$this->command->info('Running DatabaseSeeder');
         Eloquent::unguard();
-        //$this->call(UsersTableSeeder::class);
+
+        $this->command->info('Seeding education levels');
+        $this->call(EducationLevelsSeeder::class);
+
+        $this->command->info('Seeding name titles');
+        $this->call(NameTitlesSeeder::class);
     }
 }
